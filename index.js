@@ -1,19 +1,24 @@
+'use strict';
+
 require('dotenv').config();
 const express = require('express');
 const app = express();
 const chatbot = require('./src/controllers/chatbotController')
 
 // Add middleware to parse
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 // Creates the endpoint for webhook
 app.post('/webhook', (req, res) => {
+  let body = req.body;
+  console.log('POST request body: ', body)
 
   // Check this is an event from a page subscription
-  if (req.body === 'page') {
+  if (body.object === 'page') {
 
     // Iterates over each entry - there may be multiple if batched
-    req.body.forEach(entry => {
+    body.entry.forEach(entry => {
 
       // Gets the message. entry.messaging is an array, but 
       // will only ever contain one message, so we get index 0

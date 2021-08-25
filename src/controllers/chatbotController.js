@@ -2,7 +2,7 @@ require('dotenv').config();
 const https = require('https');
 
 // Handles messages events
-module.exports.handleMessage = function handleMessage(sender_psid, received_message) {
+const handleMessage = (sender_psid, received_message) => {
   let response;
 
   // Check if the message contains text
@@ -19,12 +19,12 @@ module.exports.handleMessage = function handleMessage(sender_psid, received_mess
 }
 
 // Handles messaging_postbacks events
-module.exports.handlePostback = function handlePostback(sender_psid, received_postback) {
+const handlePostback = (sender_psid, received_postback)=> {
 
 }
 
 // Sends response messages via the Send API
-module.exports.callSendAPI = function callSendAPI(sender_psid, response) {
+const callSendAPI = (sender_psid, response) => {
   // Construct the message body
   let request_body = {
     "recipient": {
@@ -47,4 +47,10 @@ module.exports.callSendAPI = function callSendAPI(sender_psid, response) {
       }
     }
   );
+} 
+
+module.exports = {
+  handleMessage: handleMessage,
+  handlePostback: handlePostback,
+  callSendAPI: callSendAPI
 }
