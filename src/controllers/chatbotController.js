@@ -1,9 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const qs = require('qs');
-const http = require('http');
-
-const https = require('https');
+// const qs = require('qs');
 
 // Handles messages events
 const handleMessage = (sender_psid, received_message) => {
@@ -37,16 +34,10 @@ const callSendAPI = (sender_psid, response) => {
     "message": response
   }
 
-  let access_token = qs.stringify({ access_token: process.env.PAGE_ACCESS_TOKEN })
-
   axios
     .post(
-      'https://graph.facebook.com/v2.6/me/messages',
-      request_body,
-      { params: {
-          access_token
-        }
-      }
+      `https://graph.facebook.com/v2.6/me/messages?access_token=${process.env.PAGE_ACCESS_TOKEN}`,
+      request_body
     )
     .then(_ => console.log('Message sent!'))
     .catch(err => console.log('Error: ', err));
