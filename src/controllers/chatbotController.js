@@ -48,9 +48,6 @@ const callSendAPI = (sender_psid, response) => {
         }
       }
     )
-    .then(function (response) {
-      console.log(response);
-    })
     .catch(function (error) {
       console.log(error);
   });
