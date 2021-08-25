@@ -41,16 +41,15 @@ const callSendAPI = (sender_psid, response) => {
 
   axios
     .post(
-      'https://reqbin.com/echo/post/json',
+      'https://graph.facebook.com/v2.6/me/messages',
       request_body,
       { params: {
           access_token
         }
       }
     )
-    .catch(function (error) {
-      console.log(error);
-  });
+    .then(_ => console.log('Message sent!'))
+    .catch(err => console.log('Error: ', err));
 }
 
 module.exports = {
