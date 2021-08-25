@@ -1,7 +1,7 @@
 const https = require('https');
 
 // Handles messages events
-export function handleMessage(sender_psid, received_message) {
+module.exports.handleMessage = function handleMessage(sender_psid, received_message) {
   let response;
 
   // Check if the message contains text
@@ -18,12 +18,12 @@ export function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-export function handlePostback(sender_psid, received_postback) {
+module.exports.handlePostback = function handlePostback(sender_psid, received_postback) {
 
 }
 
 // Sends response messages via the Send API
-export function callSendAPI(sender_psid, response) {
+module.exports.callSendAPI = function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
     "recipient": {

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-import * as chatbot from  './src/controllers/chatbotController';
+const chatbot = require('./controllers/chatbotController')
 
 // Add middleware to parse
 app.use(express.urlencoded({ extended: true }));
